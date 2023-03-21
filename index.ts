@@ -1,7 +1,8 @@
 import { WebContainer } from '@webcontainer/api';
 
-function output(text) {
-    console.log(text);
+function output(text: string) {
+    // @ts-ignore
+    outputPanel.textContent += `\n${text}`
 }
 
 window.addEventListener('load', async () => {

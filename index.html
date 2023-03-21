@@ -6,11 +6,32 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>WebContainers</title>
-    <script src="./index.ts" type="module"></script>
 </head>
 
 <body>
-    I am a regular webpage
+    <form>
+        <label for="terminal">
+            <input type="text" id="terminal">
+        </label>
+        <button type="submit">Go</button>
+    </form>
+
+    <pre>
+        <code id="outputPanel">        
+        </code>        
+    </pre>
+    <style>
+        #outputPanel {
+            display: flex;
+            background: black;
+            height: 500px;
+            color: greenyellow;
+            overflow: auto;
+            width: 100%;
+        }
+    </style>
+
+    <script src="./index.ts" type="module"></script>
 </body>
 
 </html>

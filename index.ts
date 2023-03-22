@@ -38,4 +38,8 @@ window.addEventListener('load', async () => {
         await runCommand(command, args);
     });
 
+    wc.on('server-ready', (port, host) => {
+        output(`Server ready on : ${host}:${port}`);
+    })
+
 })

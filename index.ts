@@ -10,15 +10,32 @@ window.addEventListener('load', async () => {
     const wc = await WebContainer.boot()
     output('Booted!');
 
-    const process = await wc.spawn('node', ['--version']);
+    const runCommand = async (cmd, args) => {
+        const process = await wc.spawn(cmd, args);
 
-    process.output.pipeTo(new WritableStream({
-        write: (chunk) => {
-            output('Process output: ' + chunk);
+        process.output.pipeTo(new WritableStream({
+            write: (chunk) => {
+                output('Process output: ' + chunk);
+            }
+        }));
+
+        if (await process.exit) {
+            output('Exited with code: ' + process.exit);
         }
-    }));
-
-    if (await process.exit) {
-        output('Exited with code: ' + process.exit);
     }
+
+    await runCommand('node', ['--version']);
+
+    // @ts-ignore
+    form.addEventListener('submit', async (e) => {
+        e.preventDefault();
+        // @ts-ignore
+
+        const cmd = input.value.split(' ');
+        const args = cmd.slice(1);
+        const command = cmd[0];
+
+        await runCommand(command, args);
+    });
+
 })

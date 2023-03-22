@@ -41,5 +41,15 @@ window.addEventListener('load', async () => {
     wc.on('server-ready', (port, host) => {
         output(`Server ready on : ${host}:${port}`);
     })
+    
+    // @ts-ignore
+    urlbarForm.addEventListener('submit', (e) => {
+        e.preventDefault()
+
+        // @ts-ignore
+        let theurl = url.value;
+        // @ts-ignore
+        iframe.src = theurl;
+    })
 
 })
